@@ -1,0 +1,17 @@
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic CSS Reset */
+@layer base {
+  html, body {
+    @apply h-full w-full m-0 p-0;
+    @apply bg-gray-50;
+    @apply font-sans;
+  }
+  
+  #root {
+    @apply h-full w-full;
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000;">
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    <button id="testButton">Test Connection to /me</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('testButton').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Testing connection...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/me', {
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = 'Success! Response: ' + JSON.stringify(data);
+                } else {
+                    resultDiv.textContent = 'API returned error: ' + response.status;
+                }
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                console.error('Error details:', error);
+            }
+        });
+    </script>
+</body>
+</html>
